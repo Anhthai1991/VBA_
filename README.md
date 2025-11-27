@@ -1,11 +1,19 @@
 # VBA
 
-## Ví dụ chuẩn cho code đẹp
+## 1. Ví dụ chuẩn cho code đẹp
 ```
 Option Explicit
 Public Sub SumDataClean()
+
     On Error GoTo ErrHandler
+
+' Speed up
+
     Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+    Application.EnableEvents = False
+
+ ' >>> your main code here <<<
 
     Dim ws As Worksheet
     Set ws = ThisWorkbook.Worksheets("Data")
@@ -17,10 +25,20 @@ Public Sub SumDataClean()
 
 CleanExit:
     Application.ScreenUpdating = True
+    Application.Calculation = xlCalculationAutomatic
+    Application.EnableEvents = True
     Exit Sub
 
 ErrHandler:
-    MsgBox "Error in SumDataClean: " & Err.Description
+    MsgBox "Error: " & Err.Description
     Resume CleanExit
+
 End Sub
+
 ```
+## 2. Code cho last row
+```
+Dim lastRow As Long
+lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+```
+
