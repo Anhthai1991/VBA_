@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of the Question — Leadership Mastery for sếp Thái</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --rust: #9b3a2a;
+    --sage: #4a6741;
+    --cream: #faf7f2;
+    --muted: #7a7269;
+    --card-bg: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding: 2rem 3rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 em { font-style: italic; color: var(--rust); }
+
+  .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* ── NAV TABS ── */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--ink);
+    background: var(--cream);
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-right: 1px solid var(--ink);
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover { background: var(--gold-light); color: var(--ink); }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+
+  /* ── MAIN ── */
+  main { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+
+  .section { display: none; animation: fadeUp 0.4s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  h2 em { font-style: italic; color: var(--rust); }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  p { line-height: 1.75; color: #2a2a2a; margin-bottom: 1rem; }
+
+  .mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--ink);
+    padding: 1.8rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 100%;
+    height: 100%;
+    border: 1.5px solid var(--gold);
+    z-index: -1;
+  }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--ink);
+    color: var(--paper);
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-tag.gold { background: var(--gold); color: var(--ink); }
+  .card-tag.rust { background: var(--rust); color: white; }
+  .card-tag.sage { background: var(--sage); color: white; }
+
+  /* ── ROADMAP ── */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 640px) { .phase-grid { grid-template-columns: 1fr; } }
+
+  .phase-card {
+    border: 1.5px solid var(--ink);
+    padding: 1.5rem;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-card::after {
+    content: attr(data-num);
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold-light);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .phase-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+  .phase-card .duration {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--rust);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+
+  .phase-card ul { padding-left: 1.2rem; }
+  .phase-card ul li { font-size: 0.87rem; line-height: 1.7; color: #333; }
+
+  /* ── FRAMEWORKS TABLE ── */
+  .fw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 700px) { .fw-grid { grid-template-columns: 1fr; } }
+
+  .fw-card {
+    border: 1.5px solid var(--ink);
+    padding: 1.2rem;
+    background: white;
+  }
+
+  .fw-card .fw-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .fw-card .fw-origin {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+
+  .fw-card p { font-size: 0.85rem; margin-bottom: 0.6rem; }
+
+  .fw-card .best-for {
+    font-size: 0.8rem;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  /* ── PRACTICE DOJO ── */
+  .scenario-box {
+    border: 2px solid var(--ink);
+    background: white;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .scenario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .scenario-text {
+    background: var(--paper);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .question-options { display: grid; gap: 0.7rem; margin-bottom: 1rem; }
+
+  .q-option {
+    border: 1.5px solid #ddd;
+    padding: 0.9rem 1.1rem;
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    transition: all 0.15s;
+    border-radius: 0;
+  }
+
+  .q-option:hover { border-color: var(--ink); background: var(--paper); }
+  .q-option.correct { border-color: var(--sage); background: #f0f7ee; color: var(--sage); font-weight: 500; }
+  .q-option.wrong   { border-color: var(--rust); background: #fdf0ee; color: var(--rust); }
+  .q-option.reveal  { border-color: var(--sage); background: #f0f7ee; }
+
+  .feedback-box {
+    border: 1.5px solid var(--ink);
+    padding: 1.2rem;
+    background: var(--cream);
+    display: none;
+    margin-top: 1rem;
+  }
+
+  .feedback-box.show { display: block; animation: fadeUp 0.3s ease; }
+  .feedback-box .why { font-weight: 500; margin-bottom: 0.4rem; }
+  .feedback-box p { font-size: 0.87rem; margin-bottom: 0; }
+
+  .btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.7rem 1.5rem;
+    border: 1.5px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .btn.secondary { background: transparent; color: var(--ink); }
+  .btn.secondary:hover { background: var(--paper); }
+
+  .score-display {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  /* ── DAILY HABIT ── */
+  .habit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .habit-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border: 1.5px solid var(--ink);
+    padding: 0.7rem 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: left;
+  }
+
+  .habit-table td {
+    border: 1px solid #ccc;
+    padding: 0.7rem 1rem;
+    font-size: 0.87rem;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .habit-table tr:nth-child(even) td { background: var(--cream); }
+
+  /* ── CHEAT SHEET ── */
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  @media (max-width: 640px) { .cheat-grid { grid-template-columns: 1fr; } }
+
+  .cheat-card {
+    border: 1.5px solid var(--ink);
+    background: white;
+    overflow: hidden;
+  }
+
+  .cheat-card-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.6rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cheat-card-body { padding: 1rem; }
+
+  .q-template {
+    background: var(--paper);
+    border-left: 3px solid var(--gold);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.83rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar {
+    height: 4px;
+    background: var(--gold-light);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.5s ease;
+  }
+
+  /* ── DIVIDER ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    letter-spacing: 1rem;
+  }
+
+  .section-intro {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .section-intro .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold-light);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .highlight {
+    background: linear-gradient(to bottom, transparent 60%, var(--gold-light) 60%);
+    padding: 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">◈ The Questioning Leader</div>
+    <div class="subtitle">Mastery Program · Warehouse & Operations Edition</div>
+  </div>
+  <div style="text-align:right">
+    <h1>The <em>Art</em> of<br>the Right Question</h1>
+  </div>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">① Overview</button>
+  <button class="tab-btn" onclick="showTab('frameworks')">② Frameworks</button>
+  <button class="tab-btn" onclick="showTab('roadmap')">③ 12-Week Plan</button>
+  <button class="tab-btn" onclick="showTab('practice')">④ Practice Dojo</button>
+  <button class="tab-btn" onclick="showTab('daily')">⑤ Daily Habits</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet')">⑥ Cheat Sheet</button>
+</div>
+
+<main>
+
+  <!-- ══════════════════════════════ OVERVIEW ══════════════════════════════ -->
+  <section id="overview" class="section active">
+    <div class="section-intro">
+      <div class="big-quote">"</div>
+      <div>
+        <h2>Why Great Leaders <em>Ask</em>,<br>Not Tell</h2>
+        <p class="mono">The foundation · Why this matters for sếp Thái</p>
+      </div>
+    </div>
+
+    <p>Socrates never gave a lecture. He ran a warehouse full of ideas — and his only tool was <span class="highlight">the right question at the right moment</span>. As Warehouse Manager at Tessellation Binh Duong, your power multiplies when your team finds answers themselves rather than waiting for yours.</p>
+
+    <div class="card">
+      <div class="card-tag gold">The Core Insight</div>
+      <h3>Questions > Instructions</h3>
+      <p>When you tell someone what to do → they execute your thinking.<br>
+      When you ask the right question → they develop <em>their</em> thinking, and you build capability, trust, and ownership — simultaneously.</p>
+    </div>
+
+    <div class="phase-grid">
+      <div class="card" style="margin-bottom:0">
+        <div class="card-tag rust">The Old Manager</div>
+        <p style="font-size:0.88rem; margin-bottom:0">"The forklift zone is messy. Clean it up by 3pm and label everything properly."</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <div class="card-tag sage">The Questioning Leader</div>
+        <p style="font-size:0.88rem; margin-bottom:0">"Walk me through how the forklift zone works right now. What's creating the most friction? What would an ideal state look like?"</p>
+      </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <h3 style="margin-bottom:1rem">What You Will Build</h3>
+    <div class="fw-grid" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="fw-card">
+        <div class="fw-name">🧠 Thinking</div>
+        <p style="font-size:0.82rem">Ask questions that expose root causes, not symptoms — critical in WMS failures, process bottlenecks, team conflicts</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">🤝 Trust</div>
+        <p style="font-size:0.82rem">Questions that make people feel heard and valued — builds the trust base you need as the new manager at Tessellation</p>
+      </div>
+      <div class="fw-card">
+        <div class="fw-name">⚡ Performance</div>
+        <p style="font-size:0.82rem">Questions that unlock your team's capability and turn operators into problem-solvers, not just task-executors</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag">Your Unique Starting Point</div>
+      <h3>Why Your Background Is an Asset</h3>
+      <p style="margin-bottom:0.5rem">You've led high-pressure operations at UPS. You understand velocity, accountability, and the cost of a wrong answer under time pressure. That instinct to <em>act fast</em> is your strength — and the very thing to channel through questions rather than commands, so your team grows as fast as you do.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ FRAMEWORKS ══════════════════════════════ -->
+  <section id="frameworks" class="section">
+    <h2>The <em>5 Frameworks</em><br>You Will Master</h2>
+    <p class="mono" style="margin-bottom:1.5rem">From ancient Athens to modern boardrooms — curated for logistics leaders</p>
+
+    <div class="fw-grid" style="grid-template-columns:1fr 1fr 1fr">
+      
+      <div class="fw-card">
+        <div class="fw-name">① Socratic</div>
+        <div class="fw-origin">Athens, 470 BC</div>
+        <p>Expose hidden assumptions through progressive questioning. Never accept the first answer. Dig until the real belief surfaces.</p>
+        <div class="best-for">✓ Best for: Team debates, process challenges, when someone is sure they're right but you're not</div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-name">② GROW</div>
+        <div class="fw-origin">Coaching, 1980s · Whitmore</div>
+        <p><strong>G</strong>oal → <strong>R</strong>eality → <strong>O</strong>ptions → <strong>W</strong>ill. The world's #1 coaching structure. Guides people to their own solution.</p>
+        <div class="best-for">✓ Best for: 1-on-1s, performance reviews, when a team member is stuck</div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-name">③ 5 Whys</div>
+        <div class="fw-origin">Toyota Production System · Ohno</div>
+        <p>Ask "why" five times to reach the root cause. Prevents band-aid fixes. Perfect for warehouse and logistics failure analysis.</p>
+        <div class="best-for">✓ Best for: Incident reports, delivery errors, KPI drops, recurring problems</div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-name">④ Appreciative</div>
+        <div class="fw-origin">Positive Psychology · Cooperrider</div>
+        <p>Ask about what's working, not what's broken. Build from strength. Energizes teams and reveals hidden best practices.</p>
+        <div class="best-for">✓ Best for: Low morale situations, new team onboarding, building culture</div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-name">⑤ Powerful Q.</div>
+        <div class="fw-origin">The Coaching Habit · Stanier</div>
+        <p>7 core questions that cut through noise. "What's the real challenge here?" — one question that unlocks almost any conversation.</p>
+        <div class="best-for">✓ Best for: Quick daily interactions, when you're busy but need to be present</div>
+      </div>
+
+      <div class="fw-card" style="background:var(--ink); color:var(--paper)">
+        <div class="fw-name" style="color:var(--gold)">🎯 Your Stack</div>
+        <div class="fw-origin" style="color:#999">Recommended combo</div>
+        <p style="color:#ccc; font-size:0.82rem">For <strong style="color:white">daily ops</strong>: Powerful Q + 5 Whys<br>
+        For <strong style="color:white">1-on-1s</strong>: GROW + Socratic<br>
+        For <strong style="color:white">culture</strong>: Appreciative<br>
+        For <strong style="color:white">incidents</strong>: 5 Whys + Socratic</p>
+      </div>
+    </div>
+
+    <div class="ornament">· · ·</div>
+
+    <h3 style="margin-bottom:1rem">Deep Dive: The 7 Powerful Questions (Stanier)</h3>
+    <p>Michael Bungay Stanier's research found these 7 questions unlock 90% of workplace conversations. Memorize these first.</p>
+
+    <div class="cheat-grid">
+      <div class="cheat-card">
+        <div class="cheat-card-header">① The Kickstart Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What's on your mind?"</div>
+          <p style="font-size:0.82rem">Opens space. Better than "How are you?" — it signals you're ready for real talk. Use to start every 1-on-1.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">② The AWE Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"And what else?"</div>
+          <p style="font-size:0.82rem">The first answer is rarely the real answer. This one question triples what you learn. Use it 2–3 times per conversation.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">③ The Focus Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What's the real challenge here for you?"</div>
+          <p style="font-size:0.82rem">Cuts through noise. "For you" personalizes it — the challenge they own, not just an abstract problem.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">④ The Foundation Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What do you want?"</div>
+          <p style="font-size:0.82rem">Shockingly underused. Forces clarity. Most people haven't articulated what they actually want — this unlocks it.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">⑤ The Lazy Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"How can I help?"</div>
+          <p style="font-size:0.82rem">Don't assume what help looks like. This stops you from solving problems that weren't yours to solve.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">⑥ The Strategic Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"If you're saying yes to this, what are you saying no to?"</div>
+          <p style="font-size:0.82rem">Forces prioritization thinking. Critical when your team is overloaded or taking on too many projects.</p>
+        </div>
+      </div>
+      <div class="cheat-card">
+        <div class="cheat-card-header">⑦ The Learning Question</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What was most useful for you?"</div>
+          <p style="font-size:0.82rem">Ends every meeting by reinforcing insight. Shifts ownership of learning back to them, not you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ ROADMAP ══════════════════════════════ -->
+  <section id="roadmap" class="section">
+    <h2>Your <em>12-Week</em><br>Learning Roadmap</h2>
+    <p class="mono" style="margin-bottom:1.5rem">Structured for a busy Warehouse Manager — 15–20 min/day</p>
+
+    <div class="phase-grid" style="grid-template-columns:1fr">
+
+      <div class="phase-card" data-num="1">
+        <div class="duration">Weeks 1–2 · Foundation</div>
+        <h3>Understand Why Questions Are More Powerful Than Answers</h3>
+        <ul>
+          <li>📖 Read: <em>The Coaching Habit</em> — Stanier (core text, 200 pages, practical)</li>
+          <li>🎯 Practice: Replace 3 daily directives with questions. Log the results.</li>
+          <li>🧠 Study: The Socratic Method — what it is, what it isn't</li>
+          <li>✍️ Exercise: Write down your top 5 most-used phrases as a manager. Turn each into a question.</li>
+          <li>⚡ Quick win: Start every morning standup with "What's on your mind today?"</li>
+        </ul>
+      </div>
+
+      <div class="phase-card" data-num="2">
+        <div class="duration">Weeks 3–4 · The 5 Whys Mastery</div>
+        <h3>Root Cause Questioning for Operations</h3>
+        <ul>
+          <li>📖 Study: Toyota Production System — 5 Whys methodology</li>
+          <li>🎯 Apply: Take 1 real WH incident per week. Run a full 5-Why analysis with your team, <em>out loud</em></li>
+          <li>🧠 Key skill: Learning to hold back your answer while waiting for their 5th Why</li>
+          <li>✍️ Exercise: Document 3 recurring problems at Tessellation. Map root causes using 5 Whys.</li>
+          <li>⚡ Combine with: "And what else?" after each Why answer</li>
+        </ul>
+      </div>
+
+      <div class="phase-card" data-num="3">
+        <div class="duration">Weeks 5–7 · GROW Coaching Model</div>
+        <h3>Structured 1-on-1 Conversations That Develop Your Team</h3>
+        <ul>
+          <li>📖 Read: <em>Coaching for Performance</em> — Sir John Whitmore (20 pages on GROW is enough)</li>
+          <li>🎯 Practice: Run one 15-min GROW session per week with a direct report</li>
+          <li>🧠 Master: The sequence — Goal → Reality → Options → Will (never skip steps)</li>
+          <li>✍️ Exercise: Prepare 4 GROW questions for your next performance conversation</li>
+          <li>⚡ WH Context: Use GROW when a team lead is struggling with a recurring problem — let them find their own solution</li>
+        </ul>
+      </div>
+
+      <div class="phase-card" data-num="4">
+        <div class="duration">Weeks 8–9 · Socratic Dialogue</div>
+        <h3>Challenge Assumptions Without Challenging People</h3>
+        <ul>
+          <li>📖 Study: Socratic Method core principles — elenchus, maieutics, aporia</li>
+          <li>🎯 Practice: When you disagree with a proposal, ask 3 questions before stating your view</li>
+          <li>🧠 Key skill: The "what do you mean by..." question — forces precise thinking</li>
+          <li>✍️ Exercise: Role-play a vendor negotiation using only questions for the first 5 minutes</li>
+          <li>⚡ Warning: This can feel confrontational — pair it with appreciative framing</li>
+        </ul>
+      </div>
+
+      <div class="phase-card" data-num="5">
+        <div class="duration">Weeks 10–11 · Appreciative Inquiry</div>
+        <h3>Build Culture by Asking About Strengths, Not Failures</h3>
+        <ul>
+          <li>📖 Study: Appreciative Inquiry — Cooperrider's 4-D model (Discover, Dream, Design, Destiny)</li>
+          <li>🎯 Practice: In your next team meeting, open with "Tell me about a time this team solved something really well"</li>
+          <li>🧠 Key insight: Problems are social constructs — what we pay attention to grows</li>
+          <li>✍️ Exercise: Design 3 "best-of" questions for your Tessellation team onboarding</li>
+          <li>⚡ Apply: When morale is low after a bad day, shift to Appreciative questions immediately</li>
+        </ul>
+      </div>
+
+      <div class="phase-card" data-num="6">
+        <div class="duration">Week 12 · Integration & Personal Style</div>
+        <h3>Develop YOUR Question Signature</h3>
+        <ul>
+          <li>🎯 Build your personal "Question Library" — 20 go-to questions organized by situation</li>
+          <li>🧠 Reflect: Which framework feels most natural? Which is hardest? Why?</li>
+          <li>✍️ Final exercise: Record yourself in a real conversation. Count questions vs. statements.</li>
+          <li>📊 Target ratio: 60% questions / 40% statements in leadership conversations</li>
+          <li>⚡ Next step: Teach these frameworks to your team leads — teaching is the deepest learning</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-tag gold">Book Stack — In Priority Order</div>
+      <table style="width:100%; font-size:0.85rem; border-collapse:collapse">
+        <tr>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee; width:40%"><strong>The Coaching Habit</strong> — Stanier</td>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee; color:var(--rust)">Week 1 · START HERE</td>
+        </tr>
+        <tr>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee"><strong>Coaching for Performance</strong> — Whitmore</td>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee; color:var(--muted)">Week 5</td>
+        </tr>
+        <tr>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee"><strong>A More Beautiful Question</strong> — Berger</td>
+          <td style="padding:0.5rem 0; border-bottom:1px solid #eee; color:var(--muted)">Week 8</td>
+        </tr>
+        <tr>
+          <td style="padding:0.5rem 0"><strong>The Toyota Way</strong> — Liker</td>
+          <td style="padding:0.5rem 0; color:var(--muted)">Ongoing reference</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ PRACTICE DOJO ══════════════════════════════ -->
+  <section id="practice" class="section">
+    <h2>Practice <em>Dojo</em></h2>
+    <p class="mono" style="margin-bottom:0.5rem">Real warehouse scenarios · Choose the best question</p>
+    <p>Each scenario is drawn from your actual work context. Pick the question that demonstrates the best leadership questioning approach.</p>
+
+    <div class="score-display" id="score-display">Score: 0 / 0 · Start your first scenario below</div>
+
+    <div id="dojo-container"></div>
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap">
+      <button class="btn" onclick="nextScenario()">Next Scenario →</button>
+      <button class="btn secondary" onclick="resetDojo()">Reset All</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ DAILY HABITS ══════════════════════════════ -->
+  <section id="daily" class="section">
+    <h2>Daily <em>Habits</em><br>That Build the Skill</h2>
+    <p class="mono" style="margin-bottom:1.5rem">15 minutes a day · Embedded in your existing workflow</p>
+
+    <table class="habit-table">
+      <tr>
+        <th>Time</th>
+        <th>Habit</th>
+        <th>The Question</th>
+        <th>Why It Works</th>
+      </tr>
+      <tr>
+        <td><strong>Morning standup<br>(2 min)</strong></td>
+        <td>Replace your status update opener with a question</td>
+        <td><em>"What's the one thing that, if it slips today, will hurt us most?"</em></td>
+        <td>Prioritization thinking. Team identifies the critical path, not you.</td>
+      </tr>
+      <tr>
+        <td><strong>Floor walk<br>(5 min)</strong></td>
+        <td>Ask one operator a genuine curiosity question</td>
+        <td><em>"If you could change one thing about how we do this process, what would it be?"</em></td>
+        <td>Builds trust, surfaces hidden knowledge, shows respect.</td>
+      </tr>
+      <tr>
+        <td><strong>Problem report<br>(3 min)</strong></td>
+        <td>Before solving, run 2 Whys</td>
+        <td><em>"Walk me through what happened. Why do you think that occurred?"</em></td>
+        <td>Stops band-aid fixes. Finds root cause in real time.</td>
+      </tr>
+      <tr>
+        <td><strong>1-on-1 meetings<br>(10 min)</strong></td>
+        <td>Open with a GROW sequence</td>
+        <td><em>"What do you want to get out of this conversation?" → "What's the reality right now?" → "What options do you see?"</em></td>
+        <td>Develops self-sufficiency in your team leads.</td>
+      </tr>
+      <tr>
+        <td><strong>End of day<br>(2 min)</strong></td>
+        <td>Journal: What questions did I ask today vs. statements I made?</td>
+        <td><em>"Was I a teacher or a coach today?"</em></td>
+        <td>Builds self-awareness. Your ratio improves week by week.</td>
+      </tr>
+      <tr>
+        <td><strong>Weekly review<br>(5 min)</strong></td>
+        <td>Pick one recurring problem. Run a full 5-Why analysis alone first.</td>
+        <td><em>"If I could only ask one question to understand this root cause, what would it be?"</em></td>
+        <td>Trains your question instinct. Compounds over weeks.</td>
+      </tr>
+    </table>
+
+    <div class="card">
+      <div class="card-tag rust">The One Habit to Start TODAY</div>
+      <h3>The "Hold 5 Seconds" Rule</h3>
+      <p>After asking a question — <strong>say nothing for 5 seconds</strong>. This is harder than it sounds. The discomfort you feel is the same discomfort your team member uses to generate a real answer. Silence is not awkward — it's thinking space. Most managers jump in and kill the insight before it surfaces.</p>
+      <p style="margin-bottom:0">Practice this tomorrow morning. Time yourself. 5 seconds feels like 30.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-tag sage">Advanced: The Question Audit</div>
+      <h3>Once a Week — Record Yourself</h3>
+      <p>Use your phone to record a 10-minute meeting (with team's knowledge). Count:</p>
+      <ul style="padding-left:1.5rem; margin-bottom:0.5rem">
+        <li style="line-height:2">Number of questions asked</li>
+        <li style="line-height:2">Number of statements / directives</li>
+        <li style="line-height:2">Average time between question and your next speaking turn</li>
+      </ul>
+      <p style="margin-bottom:0"><strong>Target ratio</strong>: 60% questions / 40% statements. Most managers start at 10% / 90%. The data doesn't lie.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ CHEAT SHEET ══════════════════════════════ -->
+  <section id="cheatsheet" class="section">
+    <h2>Pocket <em>Cheat Sheet</em></h2>
+    <p class="mono" style="margin-bottom:1.5rem">Questions for every situation at Tessellation Binh Duong</p>
+
+    <div class="cheat-grid">
+      <div class="cheat-card">
+        <div class="cheat-card-header">🔥 When Someone Brings a Problem</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What have you already tried?"</div>
+          <div class="q-template">"What's the real challenge here for you?"</div>
+          <div class="q-template">"What would you do if I wasn't here?"</div>
+          <div class="q-template">"What would solving this make possible?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">📉 When KPIs Drop</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"When did this first start? What changed around that time?"</div>
+          <div class="q-template">"If this number told a story, what would it be saying?"</div>
+          <div class="q-template">"What's one thing we haven't looked at yet?"</div>
+          <div class="q-template">"Who has the closest view of this problem daily?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">🧑‍🤝‍🧑 Team Conflict or Low Morale</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"Tell me about a time this team worked really well together."</div>
+          <div class="q-template">"What do you need from me to do your best work?"</div>
+          <div class="q-template">"What's one thing we could stop doing that's wasting your energy?"</div>
+          <div class="q-template">"What would make this team proud 6 months from now?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">⚙️ Process Improvement</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"If you had to remove 2 steps from this process, which would go?"</div>
+          <div class="q-template">"What's the step that everyone secretly hates doing?"</div>
+          <div class="q-template">"If this broke completely, how would we do it differently?"</div>
+          <div class="q-template">"Who else does this better than us? What can we copy?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">🗣️ Vendor / Stakeholder Meeting</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"What's the constraint on your end I might not be aware of?"</div>
+          <div class="q-template">"What would a win look like for both of us here?"</div>
+          <div class="q-template">"What would need to be true for this to work long-term?"</div>
+          <div class="q-template">"What's the one thing you wish we asked more often?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">🌱 Coaching a Team Lead</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"Where do you want to be in 12 months?" (Goal)</div>
+          <div class="q-template">"What's true right now about your situation?" (Reality)</div>
+          <div class="q-template">"What are all the possible approaches?" (Options)</div>
+          <div class="q-template">"What will you commit to, and by when?" (Will)</div>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-card-header">🚨 Incident / Near-Miss</div>
+        <div class="cheat-card-body">
+          <div class="q-template">"Walk me through exactly what happened, step by step."</div>
+          <div class="q-template">"Why did that happen? (×5)"</div>
+          <div class="q-template">"What condition allowed this to be possible?"</div>
+          <div class="q-template">"What would make this impossible to happen again?"</div>
+        </div>
+      </div>
+
+      <div class="cheat-card" style="background:var(--ink); color:var(--paper)">
+        <div class="cheat-card-header" style="background:#333">🏆 The 3 Questions for Any Situation</div>
+        <div class="cheat-card-body">
+          <div class="q-template" style="border-left-color:var(--gold); background:#1a1a1a; color:#eee">"What's on your mind?"</div>
+          <div class="q-template" style="border-left-color:var(--gold); background:#1a1a1a; color:#eee">"And what else?"</div>
+          <div class="q-template" style="border-left-color:var(--gold); background:#1a1a1a; color:#eee">"What's the real challenge here for you?"</div>
+          <p style="color:#aaa; font-size:0.78rem; margin-bottom:0; margin-top:0.5rem">These 3 unlock 80% of conversations. Master these before anything else.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-tag gold">The Questions That Kill Conversations — Avoid These</div>
+      <div class="fw-grid" style="grid-template-columns:1fr 1fr; margin:0.8rem 0 0">
+        <div>
+          <p class="mono" style="margin-bottom:0.4rem; color:var(--rust)">❌ Closed questions</p>
+          <p style="font-size:0.85rem">"Did you finish the report?" → Yes/no. Dead end. Use: "How is the report progressing?"</p>
+        </div>
+        <div>
+          <p class="mono" style="margin-bottom:0.4rem; color:var(--rust)">❌ Leading questions</p>
+          <p style="font-size:0.85rem">"Don't you think we should X?" → You already answered it. Use: "What options do you see?"</p>
+        </div>
+        <div>
+          <p class="mono" style="margin-bottom:0.4rem; color:var(--rust)">❌ Multi-part questions</p>
+          <p style="font-size:0.85rem">"What happened, why, and what will you do?" → Overwhelms. Ask one at a time.</p>
+        </div>
+        <div>
+          <p class="mono" style="margin-bottom:0.4rem; color:var(--rust)">❌ Why-accusations</p>
+          <p style="font-size:0.85rem">"Why did you do it that way?" → Sounds like blame. Use: "Walk me through your thinking."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// ── TABS ──
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── DOJO SCENARIOS ──
+const scenarios = [
+  {
+    tag: "Team Problem",
+    situation: "Your shift supervisor, Minh, comes to you and says: 'Manager, the packing area keeps running out of boxes mid-shift. Can you order more boxes?' This is the third time this week.",
+    options: [
+      { text: "Tell the procurement team to double the box inventory.", correct: false, why: "You just solved Minh's problem — which means Minh never learned to solve it. The problem will return." },
+      { text: "\"Minh, what's causing the boxes to run out mid-shift? Walk me through the flow.\"", correct: true, why: "🎯 This is Socratic + root cause questioning. You don't know if it's a supply issue, a forecasting issue, or a process issue. Neither might Minh — until you ask." },
+      { text: "\"Why didn't you check inventory at the start of the shift?\"", correct: false, why: "Accusatory framing. Even if this is the issue, the question creates defensiveness, not insight." },
+      { text: "\"What do you think we should do about it?\"", correct: false, why: "Too broad without first understanding the situation. Use this AFTER you've mapped the reality together." }
+    ]
+  },
+  {
+    tag: "KPI Drop",
+    situation: "Your picking accuracy rate dropped from 99.2% to 97.8% this week. Your team lead says: 'I'm not sure why — it just went down.' You have 5 minutes before a meeting.",
+    options: [
+      { text: "Send an email requiring all pickers to re-read the SOP.", correct: false, why: "Knee-jerk reaction. You don't know the cause yet — the SOP might not even be the issue." },
+      { text: "\"When exactly did the drop start? Which shift or which zone?\"", correct: true, why: "🎯 First Why. You're narrowing the problem before applying any solution. This is 5 Whys in action — isolate before investigating." },
+      { text: "\"Who is responsible for these errors?\"", correct: false, why: "Blame-first framing. Even if someone made errors, this approach closes down honest information-sharing." },
+      { text: "\"What's your plan to fix this by end of week?\"", correct: false, why: "Premature. Without understanding root cause, any plan will likely be a band-aid fix." }
+    ]
+  },
+  {
+    tag: "GROW Coaching",
+    situation: "Team lead Hương tells you she wants to improve but feels stuck. She's been in the same role for 2 years and doesn't know what to focus on. You have a 15-minute 1-on-1.",
+    options: [
+      { text: "Tell Hương she should focus on learning WMS and getting her logistics certification.", correct: false, why: "You just set her goal for her. She'll have low ownership of a direction she didn't choose." },
+      { text: "\"Hương, where do you want to be in 12 months? What does success look like for you?\"", correct: true, why: "🎯 GROW — Goal phase. You start with her vision, not yours. This unlocks genuine motivation and personal accountability." },
+      { text: "\"What are your weaknesses that you need to work on?\"", correct: false, why: "Deficit-focused. Opens with vulnerability, which creates anxiety. Start with aspiration instead." },
+      { text: "\"What training programs is the company offering?\"", correct: false, why: "Skips to solutions before understanding what Hương actually wants. The training might be completely irrelevant to her goal." }
+    ]
+  },
+  {
+    tag: "Process Improvement",
+    situation: "You're running a warehouse process review meeting. The receiving team has been using the same check-in process for 3 years. You suspect there's waste, but nobody has complained.",
+    options: [
+      { text: "Map the current process on a whiteboard and ask the team to identify waste.", correct: false, why: "Not bad, but you're still driving. Better to let the team diagnose it first before you guide." },
+      { text: "\"If you could remove two steps from this process with no consequences, which two would you pick?\"", correct: true, why: "🎯 Constraint-based questioning. This bypasses the 'everything is important' defense and forces prioritization thinking. You'll surface real friction fast." },
+      { text: "\"The process seems inefficient. What's wrong with it?\"", correct: false, why: "'Seems inefficient' is your judgment. This immediately puts the team on the defensive — they built the process." },
+      { text: "Present a new streamlined process and ask for feedback.", correct: false, why: "You lose all the team's hidden knowledge before you even start. Their lived experience of the process is your most valuable data." }
+    ]
+  },
+  {
+    tag: "Low Morale",
+    situation: "After a difficult month with multiple shipment delays and a client complaint, your team's energy is visibly low. You start the Monday morning meeting.",
+    options: [
+      { text: "Acknowledge the hard month and present a motivational speech about bouncing back.", correct: false, why: "Passive listening. Your speech won't shift energy — their own words will. Let them speak first." },
+      { text: "Jump straight into this week's targets and action items.", correct: false, why: "Ignores the emotional reality. People can't engage with targets when they haven't processed what happened." },
+      { text: "\"Before we get into this week — tell me about something this team handled really well recently, even in the middle of all the chaos.\"", correct: true, why: "🎯 Appreciative Inquiry. You start from strength. This reframes identity ('we are a capable team') before addressing challenges. Energy shifts immediately." },
+      { text: "\"How is everyone feeling about last month? Let's talk through it.\"", correct: false, why: "Opens a wound without a path forward. Feelings need acknowledgment but then redirection — this question doesn't carry momentum." }
+    ]
+  },
+  {
+    tag: "Vendor Negotiation",
+    situation: "A packaging supplier wants to increase prices by 8%. Before you react or counter-offer, you have the first 5 minutes of the meeting.",
+    options: [
+      { text: "Immediately push back: \"8% is too high. We need to stay at the current rate.\"", correct: false, why: "Positional bargaining. You've anchored the conversation without any information. You might be wrong about what's possible." },
+      { text: "\"Help me understand what's driving the 8% increase on your end.\"", correct: true, why: "🎯 Curiosity-first questioning. You gather information, understand their constraints, and signal respect — all before making a single demand. This creates negotiating room you didn't know existed." },
+      { text: "Ask them to send the new pricing in writing so you can review.", correct: false, why: "Delays the conversation and signals disengagement. You want information, not documents." },
+      { text: "\"What's the minimum increase you can accept?\"", correct: false, why: "Too aggressive for an opening question. You haven't yet understood why they need the increase — you might be able to solve it a different way." }
+    ]
+  }
+];
+
+let currentIdx = 0;
+let score = 0;
+let attempted = 0;
+let answered = false;
+
+function renderScenario(idx) {
+  const s = scenarios[idx];
+  answered = false;
+  const container = document.getElementById('dojo-container');
+  container.innerHTML = `
+    <div class="scenario-box">
+      <div class="scenario-header">
+        <span class="card-tag">${s.tag}</span>
+        <span class="mono">Scenario ${idx + 1} of ${scenarios.length}</span>
+      </div>
+      <div class="scenario-text">${s.situation}</div>
+      <p style="font-size:0.8rem; color:var(--muted); margin-bottom:0.8rem; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.08em">What is the best question or response?</p>
+      <div class="question-options">
+        ${s.options.map((o, i) => `
+          <button class="q-option" onclick="selectOption(${i})">${o.text}</button>
+        `).join('')}
+      </div>
+      <div class="feedback-box" id="feedback"></div>
+    </div>
+  `;
+}
+
+function selectOption(i) {
+  if (answered) return;
+  answered = true;
+  attempted++;
+  const s = scenarios[currentIdx];
+  const btns = document.querySelectorAll('.q-option');
+  const fb = document.getElementById('feedback');
+
+  btns.forEach((b, j) => {
+    if (s.options[j].correct) b.classList.add('reveal');
+    if (j === i && !s.options[i].correct) b.classList.add('wrong');
+    if (j === i && s.options[i].correct) b.classList.add('correct');
+    b.disabled = true;
+  });
+
+  if (s.options[i].correct) score++;
+  updateScore();
+
+  fb.innerHTML = `<div class="why">${s.options[i].correct ? '✓ Correct' : '✗ Not the best choice'}</div><p>${s.options[i].why}</p>`;
+  fb.classList.add('show');
+}
+
+function updateScore() {
+  document.getElementById('score-display').textContent = `Score: ${score} / ${attempted} · ${Math.round((score/attempted)*100)}% accuracy`;
+}
+
+function nextScenario() {
+  currentIdx = (currentIdx + 1) % scenarios.length;
+  renderScenario(currentIdx);
+}
+
+function resetDojo() {
+  score = 0; attempted = 0; currentIdx = 0; answered = false;
+  document.getElementById('score-display').textContent = 'Score: 0 / 0 · Start your first scenario below';
+  renderScenario(0);
+}
+
+renderScenario(0);
+</script>
+</body>
+</html>
